@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Found Friends</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/found_friends.css') }}">
+</head>
+<body>
+  <h1>Find Your Gym Partners</h1>
+
+  <!-- City selection dropdown -->
+  <div class="city-selection">
+    <label for="city">Select your city:</label>
+    <select id="city" name="city">
+      <option value="Tunis">Tunis</option>
+      <option value="Sousse">Sousse</option>
+      <option value="Sfax">Sfax</option>
+      <option value="Bizerte">Bizerte</option>
+      <option value="Monastir">Monastir</option>
+      <option value="Kairouan">Kairouan</option>
+      <option value="Nabeul">Nabeul</option>
+    </select>
+  </div>
+
+  <!-- Friends container -->
+  <div class="friends-container" id="friends-container">
+    {% for friend in friends %}
+      <div class="friend-card">
+        <img src="{{ url_for('static', filename='images/' + friend['img']) }}" alt="Profile Picture">
+        <p><strong>Name:</strong> {{ friend['name'] }}</p>
+        <p><strong>Gender:</strong> {{ friend['gender'] }}</p>
+        <p><strong>Age:</strong> {{ friend['age'] }}</p>
+        <p><strong>Country:</strong> {{ friend['country'] }}</p>
+        <p><strong>City:</strong> {{ friend['city'] }}</p>
+        <button class="invite">Invite</button>
+        <button class="remove">Remove</button>
+      </div>
+    {% endfor %}
+  </div>
+
+  <!-- AI Button to find closest gym partner -->
+  <div class="button-container">
+    <button class="ai-button" id="ai-button">🤖 AI found your closest gym partner</button>
+  </div>
+
+  <script>
+    // Function to handle button actions
+    function attachButtonHandlers() {
+      document.querySelectorAll('.invite').forEach(button => {
+        button.addEventListener('click', () => {
+          button.textContent = 'Invite Sent ✅';
+          button.disabled = true;
+          button.style.backgroundColor = 'gray';
+        });
+      });
+
+      document.querySelectorAll('.remove').forEach(button => {
+        button.addEventListener('click', () => {
+          const card = button.closest('.friend-card');
+          if (card) {
+            card.remove();
+          }
+        });
+      });
+    }
+
+    // Event listener for AI button click
+    document.getElementById('ai-button').addEventListener('click', function() {
+      // Get the selected city from the dropdown
+      const city = document.getElementById('city').value;
+      // Redirect to the page showing gym partners from the selected city
+      window.location.href = "{{ url_for('find_gym_partners') }}?city=" + city;
+    });
+
+    // Attach handlers for invite/remove buttons
+    attachButtonHandlers();
+  </script>
+</body>
+</html>

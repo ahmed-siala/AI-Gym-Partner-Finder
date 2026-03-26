@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create an Account - Gym Community</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(to right, #0f0f0f, #1e1e1e);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color: #e91e63;
+    }
+
+    .create-account-container {
+      background-color: rgba(0, 0, 0, 0.85);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(233, 30, 99, 0.4);
+      width: 90%;
+      max-width: 500px;
+    }
+
+    .create-account-container h2 {
+      font-size: 28px;
+      color: #e91e63;
+      margin-bottom: 25px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      background-color: #222;
+      color: white;
+    }
+
+    input[readonly] {
+      background-color: #333;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      margin-top: 20px;
+      background-color: #e91e63;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #d81b60;
+    }
+
+    @media (max-width: 500px) {
+      .create-account-container {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Create an Account</h1>
+  <form action="{{ url_for('signin') }}" method="GET">
+    <input type="text" placeholder="Enter your name" required>
+    <input type="text" placeholder="Enter your username" required>
+    <input type="email" placeholder="Enter your email" required>
+    <input type="password" placeholder="Enter your password" required>
+    <input type="password" placeholder="Confirm your password" required>
+    <input type="text" placeholder="Enter your phone number" required>
+    <input type="number" placeholder="Enter your age" min="8" max="100" required>
+
+    <input type="text" value="Tunisia" readonly>
+
+    <!-- Gender Selection -->
+    <select required>
+      <option value="">Select your gender</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+      <option value="Prefer not to say">Prefer not to say</option>
+    </select>
+
+    <!-- City Selection -->
+    <select required>
+      <option value="">Select your city</option>
+      <option value="Tunis">Tunis</option>
+      <option value="Ariana">Ariana</option>
+      <option value="Ben Arous">Ben Arous</option>
+      <option value="Manouba">Manouba</option>
+      <option value="Nabeul">Nabeul</option>
+      <option value="Zaghouan">Zaghouan</option>
+      <option value="Bizerte">Bizerte</option>
+      <option value="Béja">Béja</option>
+      <option value="Jendouba">Jendouba</option>
+      <option value="Kef">Kef</option>
+      <option value="Siliana">Siliana</option>
+      <option value="Sousse">Sousse</option>
+      <option value="Monastir">Monastir</option>
+      <option value="Mahdia">Mahdia</option>
+      <option value="Sfax">Sfax</option>
+      <option value="Kairouan">Kairouan</option>
+      <option value="Kasserine">Kasserine</option>
+      <option value="Sidi Bouzid">Sidi Bouzid</option>
+      <option value="Gabes">Gabes</option>
+      <option value="Medenine">Medenine</option>
+      <option value="Tataouine">Tataouine</option>
+      <option value="Gafsa">Gafsa</option>
+      <option value="Tozeur">Tozeur</option>
+      <option value="Kebili">Kebili</option>
+    </select>
+
+    <button type="submit">Create Account</button>
+</form>
+  <p>Already have an account? <a href="{{ url_for('signin') }}">Sign In</a></p>
+
+</body>
+</html>

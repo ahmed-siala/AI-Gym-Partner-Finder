@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign In - Gym Community</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+  <style>
+   body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background-image: url("{{ url_for('static', filename='images/8f9c981b15b22b253a4f17025d639810.jpg') }}");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(2px);
+}
+
+.signin-container {
+  background-color: rgba(0, 0, 0, 0.75);
+  padding: 40px 30px;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+  color: white;
+  text-align: center;
+}
+
+.signin-container h2 {
+  margin-bottom: 25px;
+  font-size: 28px;
+  color: #e91e63;
+}
+
+.signin-container input[type="text"],
+.signin-container input[type="password"] {
+  width: 100%;
+  padding: 12px 15px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 8px;
+  background-color: #222;
+  color: white;
+  font-size: 16px;
+}
+
+.signin-container button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 20px;
+  background-color: #e91e63;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.signin-container button:hover {
+  background-color: #d81b60;
+}
+
+.signin-container p {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.signin-container a {
+  color: #e91e63;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.signin-container a:hover {
+  text-decoration: underline;
+}
+
+  </style>
+</head>
+<body>
+  <div class="signin-container">
+    <h2>Sign In</h2>
+    <form action="{{ url_for('welcome') }}" method="GET">
+      <input type="text" name="username" placeholder="Username or Email" required />
+      <input type="password" name="password" placeholder="Password" required />
+      <button type="submit">Log In</button>
+    </form>
+    <p>Don't have an account? <a href="{{ url_for('createanaccount') }}">Create one</a></p>
+  </div>
+</body>
+</html>

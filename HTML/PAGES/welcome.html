@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Welcome - Gym Community</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background-image: url("{{ url_for('static', filename='images/ba96007c788f2dfec7dc48dbcf37139e.jpg') }}");
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-attachment: fixed;
+      background-color: black;
+      color: white;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      background-color: rgba(0, 0, 0, 0.7);
+      z-index: 2;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+      padding: 8px 15px;
+      border-radius: 20px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .nav-links a:hover {
+      background-color: #e91e63;
+      color: white;
+    }
+
+    .modal {
+      position: fixed;
+      top: -100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.9);
+      padding: 30px;
+      width: 80%;
+      max-width: 500px;
+      border-radius: 10px;
+      text-align: center;
+      animation: slideDown 1s forwards;
+      z-index: 3;
+    }
+
+    @keyframes slideDown {
+      to {
+        top: 20%;
+      }
+    }
+
+    .modal h2 {
+      margin-top: 0;
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .modal ul {
+      text-align: left;
+      margin-bottom: 20px;
+      padding-left: 20px;
+    }
+
+    .modal ul li {
+      margin-bottom: 10px;
+    }
+
+    .modal button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .accept {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    .decline {
+      background-color: #f44336;
+      color: white;
+    }
+
+    .accept:hover {
+      background-color: #45a049;
+    }
+
+    .decline:hover {
+      background-color: #da190b;
+    }
+
+    .message {
+      position: fixed;
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #4CAF50;
+      padding: 15px 25px;
+      border-radius: 5px;
+      font-size: 18px;
+      display: none;
+      z-index: 4;
+    }
+
+    main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      position: relative;
+      z-index: 1;
+    }
+
+    main h2 {
+      font-size: 3rem;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 20px 40px;
+      border-radius: 15px;
+    }
+
+    .about-section {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      padding: 50px 20px;
+      background-color: #111;
+      text-align: left;
+    }
+
+    .about-section img {
+      width: 300px;
+      border-radius: 15px;
+      margin: 20px;
+    }
+
+    .about-section .text {
+      max-width: 600px;
+      padding: 20px;
+      font-size: 1.2rem;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Gym Community</h1>
+    <div class="nav-links">
+      <a href="{{ url_for('foundyourfriends') }}">Found Friends</a>
+      <a href="{{ url_for('report') }}">Report</a>
+      <a href="{{ url_for('contact_us') }}">Contact Us</a>
+    </div>
+  </header>
+
+  <div class="message" id="message">Rules accepted, welcome to our community!</div>
+
+  <main>
+    <h2>Welcome to the Strongest Gym Community!</h2>
+  </main>
+
+  <section class="about-section">
+    <img src="{{ url_for('static', filename='images/72ff9ffa0418de3f4dea11d9447a1716.jpg') }}" alt="Community Image">
+    <div class="text">
+      <h2>Why Use This Platform?</h2>
+      <p>
+        This platform was created for gym lovers who want to meet like-minded people and stay motivated.
+        Whether you’re just starting your fitness journey or you’ve been training for years, here you’ll
+        find a supportive community that helps you grow. Connect with others, make friends, and find the
+        perfect workout partner to keep pushing forward — together!
+      </p>
+    </div>
+  </section>
+
+  <!-- Modal for accepting/declining rules -->
+  <div class="modal" id="rulesModal">
+    <h2>Community Rules</h2>
+    <ul>
+      <li>You must be over 18 years old to join.</li>
+      <li>Respect all members of the community.</li>
+      <li>No harassment or bullying allowed.</li>
+      <li>Encourage, invite, and communicate positively with others.</li>
+      <li>Keep conversations clean and gym-related.</li>
+      <li>Report any inappropriate behavior immediately.</li>
+    </ul>
+    <button class="accept" onclick="acceptRules()">Accept</button>
+    <button class="decline" onclick="declineRules()">Decline</button>
+  </div>
+
+  <audio id="dingSound" src="https://www.soundjay.com/buttons/sounds/button-09.mp3" preload="auto"></audio>
+
+  <script>
+    function acceptRules() {
+      document.getElementById('rulesModal').style.display = 'none';
+      let msg = document.getElementById('message');
+      let ding = document.getElementById('dingSound');
+      ding.play();
+      msg.style.display = 'block';
+      setTimeout(() => {
+        msg.style.display = 'none';
+      }, 3000);
+    }
+
+    function declineRules() {
+      window.location.href = "{{ url_for('signin') }}"; // Go back to gym page
+    }
+  </script>
+
+</body>
+</html>
