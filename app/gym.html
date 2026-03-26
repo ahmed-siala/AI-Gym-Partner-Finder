@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym Community</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Join the Strongest Gym Community!</h1>
+        <div class="invite-section">
+            <a href="signinPage.html" class="sign-in-link">Sign In</a>
+            <a href="create_an_account.html" class="create-account-link">Create an Account</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="gallery">
+            <img src="{{ url_for('static', filename='images/72ff9ffa0418de3f4dea11d9447a1716.jpg') }}" alt="Gym Image 1">
+            <img src="{{ url_for('static', filename='images/197bd97ac4fc3c9255e33bf87c174491.jpg') }}" alt="Gym Image 2">
+            <img src="{{ url_for('static', filename='images/c11ec4a7b08d490c2027de897e78e04e.jpg') }}" alt="Gym Image 3">
+        </div>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
