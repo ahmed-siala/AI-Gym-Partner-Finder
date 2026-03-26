@@ -1,0 +1,84 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #111 0%, #e91e63 100%);
+    color: white;
+    text-align: center;
+    min-height: 100vh;
+  }
+  
+  h1 {
+    margin-top: 30px;
+    font-size: 3em;
+    color: #ff4081; /* pink */
+    text-shadow: 2px 2px 4px black;
+  }
+  
+  .friends-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin: 40px;
+  }
+  
+  .friend-card {
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid #ff4081;
+    border-radius: 15px;
+    width: 230px;
+    padding: 20px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.6);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .friend-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 24px rgba(255, 64, 129, 0.5);
+  }
+  
+  .friend-card img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    border: 2px solid #ff4081;
+    object-fit: cover;
+  }
+  
+  .friend-card p {
+    margin: 8px 0;
+    font-size: 1.1em;
+  }
+  
+  .invite, .remove {
+    margin-top: 10px;
+    padding: 10px 15px;
+    width: 90px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.9em;
+  }
+  
+  .invite {
+    background-color: #ff4081;
+    color: white;
+    margin-right: 5px;
+  }
+  
+  .invite:hover {
+    background-color: #e91e63;
+  }
+  
+  .remove {
+    background-color: #333;
+    color: white;
+  }
+  
+  .remove:hover {
+    background-color: #555;
+  }
+  
